@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@600&display=swap');
+*{
+    background-color:f1fbff ;
+}
+body{
+    background: f1fbff;
+}
+.section-padding{
+    padding: 100px 0;
+}
+.carousel-item{
+    height: 100vh;
+    min-height: 300px;
+}
+.carousel-caption{
+    bottom: 230px;
+    z-index: 2;
+}
+.carousel-caption h5{
+    font-size: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+.carousel-caption p{
+    width: 65%;
+    margin: auto;
+    font-size: 15px;
+    font-weight: 0;
+    line-height: 1.9;
+}
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+.navbar-nav{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.navbar-light .navbar-brand{
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover{
+    color: #000;
+}
+.w-100{
+    height: 100vh;
+}
+.services .card-body i{
+    font-size: 50px;
+    
+}
+
+/* === responsive === */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .carousel-caption{
+        bottom: 180x;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .navbar-nav{
+        text-align: center;
+    }
+    .carousel-caption{
+        bottom: 200px;
+        
+    }
+    .carousel-caption h5{
+        font-size: 17px;
+    }
+    .carousel-caption a{
+        padding: 10px 15px;
+    }
+    .carousel-caption p{
+        width: 100%;
+        line-height: 1.6;
+        font-size: 12px;
+    }
+}
+/* footer */
+.footer { 
+    color: white;
+    background: black;
+    display: flex;
+    align-items: center;
+    height: 154px;
+}
+.mj{
+    color: #ffffff;
+    text-decoration: none;
+}
+.mj:hover{
+    color: #ffc107;
+}
+.fa{
+    color: #ffffff;
+
+    text-decoration: none;
+    margin-right: 3px;
+    margin-right: 4px !important;
+}
+/* .bi{
+    color: #ffc107;
+} */
+
+.imgfluid{
+    width: 350px;
+    height: 340px;
+}
+.imgdash{
+    width: 50px;
+    height: 50px;
+}
+.lead{
+    height: 120px;
+}
+.ajt{
+    margin-top: 230px;
+    margin-bottom: 231px;
+}
