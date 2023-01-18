@@ -119,15 +119,12 @@ body{
 .imgfluid{
     width: 350px;
     height: 340px;
+    padding-right: 10%;
 }
 .imgdash{
     width: 50px;
     height: 50px;
 }
-.lead{
-    height: 120px;
-}
-.ajt{
-    margin-top: 230px;
-    margin-bottom: 231px;
+.lead2{
+    height: 140px;
 }

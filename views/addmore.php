@@ -4,6 +4,10 @@ if (isset($_POST['submit'])) {
     $newProduct->addProduct();
 }
 ?>
+<?php if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
+
+Redirect::to('index');} 
+?>
 <div class="container" style="margin-right: 0px; margin-top:8%;  margin-bottom:8%;">
     <div class="row my-4">
         <div class="col-md-8 mx-auto">
@@ -57,22 +61,47 @@ if (isset($_POST['submit'])) {
 
 
 
-  $(document).ready(function() {
+//   $(document).ready(function() {
+//     // Clone the first form fieldset and add a button to remove it
+//     var formFieldset = $(".form-fieldset").first().clone();
+//     formFieldset.append('<button class="remove-fieldset btn btn-danger">Remove</button>');
+
+//     // Add click event listener to the "Add More" button
+//     $(".add-more").click(function() {
+//       // Append the cloned form fieldset to the form
+//       $("#form-1").append(formFieldset.clone());
+//     });
+//         // Add click event listener to the "Remove" buttons
+//         $(document).on("click", ".remove-fieldset", function() {
+//             // Remove the parent fieldset when the "Remove" button is clicked
+//             $(this).parent().remove();
+//         });
+//     });
+document.addEventListener("DOMContentLoaded", function() {
     // Clone the first form fieldset and add a button to remove it
-    var formFieldset = $(".form-fieldset").first().clone();
-    formFieldset.append('<button class="remove-fieldset btn btn-danger">Remove</button>');
+    var formFieldset = document.querySelector(".form-fieldset").cloneNode(true);
+    var removeBtn = document.createElement("button");
+    removeBtn.classList.add("remove-fieldset", "btn", "btn-danger");
+    removeBtn.innerHTML = "Remove";
+    formFieldset.appendChild(removeBtn);
 
     // Add click event listener to the "Add More" button
-    $(".add-more").click(function() {
+    var addMoreBtn = document.querySelector(".add-more");
+    addMoreBtn.addEventListener("click", function() {
       // Append the cloned form fieldset to the form
-      $("#form-1").append(formFieldset.clone());
+      var form = document.querySelector("#form-1");
+      form.appendChild(formFieldset.cloneNode(true));
     });
-        // Add click event listener to the "Remove" buttons
-        $(document).on("click", ".remove-fieldset", function() {
+
+    // Add click event listener to the "Remove" buttons
+    document.addEventListener("click", function(event) {
+        if (event.target.classList.contains("remove-fieldset")) {
             // Remove the parent fieldset when the "Remove" button is clicked
-            $(this).parent().remove();
-        });
+            event.target.parentNode.remove();
+        }
     });
+});
+
 </script>
 
 

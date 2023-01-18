@@ -5,10 +5,38 @@ class glowController
 
 	public function getAllProduct()
 	{
-		$furnitures = glow::getAll();
+		$product = glow::getAll();
 		
 
-		return $furnitures;
+		return $product;
+	}
+	public function getTotal()
+	{
+		$product = glow::total();
+		
+
+		return $product;
+	}
+	public function outofstock()
+	{
+		$product = glow::stockout();
+		
+
+		return $product;
+	}
+	public function totalprice()
+	{
+		$product = glow::calcul();
+		
+
+		return $product;
+	}
+	public function instock()
+	{
+		$product = glow::stockin();
+		
+
+		return $product;
 	}
 	// public function addProduct()
 	// {

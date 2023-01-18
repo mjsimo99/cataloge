@@ -9,7 +9,40 @@ class glow{
      */
 
     static public function getAll(){
-        $stmt = DB::connect()->prepare("SELECT * FROM product");
+        $stmt = DB::connect()->prepare("SELECT * FROM product ORDER BY name ASC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
+
+    }
+    static public function total(){
+        $stmt = DB::connect()->prepare("SELECT COUNT(*) FROM product");
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
+
+    }
+    static public function stockout(){
+        $stmt = DB::connect()->prepare("SELECT COUNT(*) FROM product WHERE statut = 0");
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
+
+    }
+    static public function stockin(){
+        $stmt = DB::connect()->prepare("SELECT COUNT(*) FROM product WHERE statut = 1");
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
+
+    }
+    static public function calcul(){
+        $stmt = DB::connect()->prepare("SELECT SUM(prix) FROM product
+        ");
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->close();

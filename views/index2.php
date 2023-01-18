@@ -87,8 +87,8 @@ $products = $data->getAllProduct();
           <div class="card-body">
             <i class="bi bi-subtract"></i>
             <h3 class="card-title">Best Quality</h3>
-            <p class="lead2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores cupiditate voluptate voluptatibus id nemo consectetur, quia illum itaque, excepturi a quas doloremque deserunt iure! Nulla at eaque tempora magni ratione.</p>
-            <button class="btn btn-warning text-dark">Read More</button>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores cupiditate voluptate voluptatibus id nemo consectetur, quia illum itaque, excepturi a quas doloremque deserunt iure! Nulla at eaque tempora magni ratione.</p>
+            <button class="btn btn-warning text-dark mt-5">Read More</button>
           </div>
         </div>
       </div>
@@ -98,8 +98,8 @@ $products = $data->getAllProduct();
           <div class="card-body">
             <i class="bi bi-slack"></i>
             <h3 class="card-title">Sustainability</h3>
-            <p class="lead2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores cupiditate voluptate voluptatibus id nemo consectetur, quia illum itaque, excepturi a quas doloremque deserunt iure! Nulla at eaque tempora magni ratione.</p>
-            <button class="btn btn-warning text-dark">Read More</button>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores cupiditate voluptate voluptatibus id nemo consectetur, quia illum itaque, excepturi a quas doloremque deserunt iure! Nulla at eaque tempora magni ratione.</p>
+            <button class="btn btn-warning text-dark mt-5">Read More</button>
           </div>
         </div>
       </div>
@@ -109,8 +109,8 @@ $products = $data->getAllProduct();
           <div class="card-body">
             <i class="bi bi-balloon-fill"></i>
             <h3 class="card-title">integrity</h3>
-            <p class="lead2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores cupiditate voluptate voluptatibus id nemo consectetur, quia illum itaque, excepturi a quas doloremque deserunt iure! Nulla at eaque tempora magni ratione.</p>
-            <button class="btn btn-warning text-dark">Read More</button>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores cupiditate voluptate voluptatibus id nemo consectetur, quia illum itaque, excepturi a quas doloremque deserunt iure! Nulla at eaque tempora magni ratione.</p>
+            <button class="btn btn-warning text-dark mt-5">Read More</button>
           </div>
         </div>
       </div>
@@ -128,14 +128,31 @@ $products = $data->getAllProduct();
           <p>Lorem ipsum dolor sit amet, consectetur <br> adipisicing elit. Doloribus eveniet?</p>
         </div>
       </div>
-
-      <div class="container mb-3 text-center">
-        <div class="btn-search">
-          <input type="text" placeholder="Search For Product" class="search">
-          <i class="bi bi-search"></i>
-        </div>
-      </div>
       <div class="row">
+
+
+        <!-- <input type="text" id="searchInput" placeholder="Search by name">
+        <button id="searchBtn" onclick="search()">Search</button>
+
+        <div class="col-12 col-md-12 col-lg-4 mb-5">
+  <div class="card text light text-center bg-white pb-2">
+    <div class="card-body text-dark">
+      <div class="img-area mb-4">
+        <img src="https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="imgfluid">
+      </div>
+      <h3 class="card-title search">Product 1</h3>
+      <p class="lead">Description</p>
+      <button class="btn bg-warning text-dark">Learn More</button>
+    </div>
+  </div>
+</div> -->
+
+<form>
+  <input type="text" placeholder="Search by name" id="searchInput">
+  <button type="submit" id="searchBtn">Search</button>
+</form>
+
+
         <?php foreach ($products as $product) : ?>
           <div class="col-12 col-md-12 col-lg-4 mb-5">
             <div class="card text light text-center bg-white pb-2">
@@ -145,8 +162,8 @@ $products = $data->getAllProduct();
                   <?php echo '<img class="imgfluid" src="data:image/jpeg;base64,' . base64_encode($product["image"]) . '" />'; ?>
 
                 </div>
-                <h3 class="card-title ProductName"><?php echo $product['name']; ?></h3>
-                <p class="lead2"><?php echo $product['description']; ?></p>
+                <h3 class="card-title search"><?php echo $product['name']; ?></h3>
+                <p class="lead"><?php echo $product['description']; ?></p>
                 <button class="btn bg-warning text-dark">Learn More</button>
               </div>
             </div>
@@ -163,20 +180,39 @@ $products = $data->getAllProduct();
 
 
 <script>
-  const search = document.querySelector(".search");
+//   function search() {
+//   var input, filter, cards, cardTitle, i;
+//   input = document.getElementById("searchInput");
+//   filter = input.value.toUpperCase();
+//   cards = document.getElementsByClassName("col-12 col-md-12 col-lg-4 mb-5");
+//   for (i = 0; i < cards.length; i++) {
+//     cardTitle = cards[i].getElementsByClassName("search")[0];
+//     if (cardTitle.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//       cards[i].style.display = "";
+//     } else {
+//       cards[i].style.display = "none";
+//     }
+//   }
+// }
 
-  const ProductName = document.getElementsByClassName("ProductName");
-  search.addEventListener("input", () => {
-    Array.from(ProductName).forEach(product => {
-      // console.log(search.value);
-      if (product.innerText.includes(search.value)) {
-        product.parentElement.parentElement.style.display = "block";
-        console.log(product.parentElement.parentElement);
 
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
 
-      } else {
-        product.parentElement.parentElement.parentElement.style.display = "none";
-      }
-    });
-  })
+searchBtn.addEventListener("click", function(event) {
+  event.preventDefault(); // prevent form from submitting
+  const searchValue = searchInput.value.toLowerCase();
+  // loop through all products
+  for (let i = 0; i < products.length; i++) {
+    const productName = products[i].name.toLowerCase();
+    const productElement = products[i].element;
+    // check if product name contains search value
+    if (productName.includes(searchValue)) {
+      productElement.style.display = "block"; // show product
+    } else {
+      productElement.style.display = "none"; // hide product
+    }
+  }
+});
+
 </script>

@@ -8,7 +8,10 @@ if (isset($_POST['submit'])) {
 	$existProduct->updateProduct();
 }
 ?>
+<?php if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
 
+Redirect::to('index');} 
+?>
 
 
 
