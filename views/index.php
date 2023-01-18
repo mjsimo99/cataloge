@@ -171,11 +171,11 @@ $products = $data->getAllProduct();
       // console.log(search.value);
       if (product.innerText.includes(search.value)) {
         product.parentElement.parentElement.style.display = "block";
-        console.log(product.parentElement.parentElement);
+        console.log(product.parentElement.parentElement.parentElement);
 
 
       } else {
-        product.parentElement.parentElement.parentElement.style.display = "none";
+        product.parentElement.parentElement.style.display = "none";
       }
     });
   })
