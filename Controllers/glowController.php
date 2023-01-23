@@ -38,67 +38,73 @@ class glowController
 
 		return $product;
 	}
-	// public function addProduct()
-	// {
-	// 	if (isset($_POST['submit'])) {
-	// 		// Check if any of the form fields are empty
-	// 		if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['prix']) || empty($_FILES['image'])) {
-	// 			// Display error message
-	// 			echo "All form fields are required. Please fill out the form and try again.";
-	// 		} else {
-	// 			$data = array(
-	// 				'name' => $_POST['name'],
-	// 				'prix' => $_POST['prix'],
-	// 				'description' => $_POST['description'],
-	// 				'statut' => $_POST['statut'],
-
-	// 				'image' => file_get_contents($_FILES['image']['tmp_name']),
-					
-
-	// 			);
-	// 			$result = glow::add($data);
-	// 			if ($result === 'ok') {
-	// 				Session::set('success', 'Product Ajouté');
-	// 				Redirect::to('dashboard');
-	// 				// Form was submitted successfully
-	// 			} else {
-	// 				echo $result;
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	public function addProduct()
-    {
-        if (isset($_POST['submit'])) {
-            // Check if any of the form fields are empty
-            if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['prix']) || empty($_FILES['image'])) {
-                // Display error message
-                echo "All form fields are required. Please fill out the form and try again.";
-            } else {
-                $data = array();
-                // loop through the name, description, statut and prix arrays
-                foreach ($_POST['name'] as $key => $name) {
-                    $data[$key]['name'] = $name;
-                    $data[$key]['description'] = $_POST['description'][$key];
-                    $data[$key]['statut'] = $_POST['statut'][$key];
-                    $data[$key]['prix'] = $_POST['prix'][$key];
-                }
-                // loop through the image array
-                foreach ($_FILES['image']['tmp_name'] as $key => $image) {
-                    $data[$key]['image'] = file_get_contents($image);
-                }
-                $result = glow::add($data);
-                if ($result === 'ok') {
-                    Session::set('success', 'Product Ajouté');
-                    Redirect::to('dashboard');
-                    // Form was submitted successfully
-                } else {
-                    echo $result;
-                }
-            }
-        }
-    }
+	{
+		if (isset($_POST['submit'])) {
+			// Check if any of the form fields are empty
+			if (array_filter($_POST['name']) === [] || array_filter($_POST['description']) === [] || array_filter($_POST['prix']) === [] || array_filter($_FILES['image']['tmp_name']) === []) {
+				echo "All form fields are required. Please fill out the form and try again.";
+			}  else {
+				$data = array();
+				// loop through the name, description, statut and prix arrays
+				foreach ($_POST['name'] as $key => $name) {
+					$data[$key]['name'] = $name;
+					$data[$key]['description'] = $_POST['description'][$key];
+					$data[$key]['statut'] = $_POST['statut'][$key];
+					$data[$key]['prix'] = $_POST['prix'][$key];
+	
+				}
+				// loop through the image array
+				foreach ($_FILES['image']['tmp_name'] as $key => $image) {
+					if (!empty($_FILES['image']['tmp_name'][$key])) {
+						$data[$key]['image'] = file_get_contents($image);
+					}
+				}
+				$result = glow::add($data);
+				if ($result === 'ok') {
+					Session::set('success', 'Product Ajouté');
+					Redirect::to('dashboard');
+					// Form was submitted successfully
+				} else {
+					echo $result;
+				}
+			}
+		}
+	}
+	
+
+	// public function addProduct()
+    // {
+    //     if (isset($_POST['submit'])) {
+    //         // Check if any of the form fields are empty
+    //         if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['prix']) || empty($_FILES['image'])) {
+    //             // Display error message
+    //             echo "All form fields are required. Please fill out the form and try again.";
+    //         } else {
+    //             $data = array();
+    //             // loop through the name, description, statut and prix arrays
+    //             foreach ($_POST['name'] as $key => $name) {
+    //                 $data[$key]['name'] = $name;
+    //                 $data[$key]['description'] = $_POST['description'][$key];
+    //                 $data[$key]['statut'] = $_POST['statut'][$key];
+    //                 $data[$key]['prix'] = $_POST['prix'][$key];
+					
+	// 			}
+    //             // loop through the image array
+    //             foreach ($_FILES['image']['tmp_name'] as $key => $image) {
+    //                 $data[$key]['image'] = file_get_contents($image);
+    //             }
+    //             $result = glow::add($data);
+    //             if ($result === 'ok') {
+    //                 Session::set('success', 'Product Ajouté');
+    //                 Redirect::to('dashboard');
+    //                 // Form was submitted successfully
+    //             } else {
+    //                 echo $result;
+    //             }
+    //         }
+    //     }
+    // }
 
 	public function getOneProduct()
 	{
