@@ -5,7 +5,7 @@ require_once './Controllers/HomeController.php';
 require_once './Controllers/glowController.php';
 require_once './bootstrap.php';
 
-session_start(); 
+session_start();
 
 spl_autoload_register('autoload');
 

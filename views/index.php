@@ -119,6 +119,7 @@ $products = $data->getAllProduct();
 </section>
 
 
+
 <section id="portfolio" class="section-padding">
   <div class="container">
     <div class="row">
@@ -135,48 +136,37 @@ $products = $data->getAllProduct();
           <i class="bi bi-search"></i>
         </div>
       </div>
-      <div class="row">
-        <?php foreach ($products as $product) : ?>
-          <div class="col-12 col-md-12 col-lg-4 mb-5">
-            <div class="card text light text-center bg-white pb-2">
-              <div class="card-body text-dark">
-                <div class="img-area mb-4">
-                  <!-- <img src="https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="imgfluid"> -->
-                  <?php echo '<img class="imgfluid" src="data:image/jpeg;base64,' . base64_encode($product["image"]) . '" />'; ?>
+      </div>
+  </div>
+    
+      <div class="all d-flex justify-content-around mb-4 flex-wrap col-12 col-sm-10 mx-auto mt-3">
 
-                </div>
-                <h3 class="card-title ProductName"><?php echo $product['name']; ?></h3>
-                <p class="lead2"><?php echo $product['description']; ?></p>
-                <button class="btn bg-warning text-dark">Learn More</button>
-              </div>
+        <?php foreach ($products as $product) : ?>
+
+          <div class="card text-center mb-3" style="width: 20rem;">
+            <!-- <img src="views/images/laptop.jpg" class="card-img-top" alt="Image"> -->
+            <?php echo '<img class="wiheight" src="data:image/jpeg;base64,' . base64_encode($product["image"]) . '" />'; ?>
+
+            <div class="card-body">
+              <h5 class="card-title ProductName text-success"><?php echo $product['name']; ?></h5>
+              <p class="card-text"><?php echo $product['description']; ?></p>
+              <button class="btn bg-warning text-dark">Learn More</button>
             </div>
           </div>
-
         <?php endforeach; ?>
+
+
+
+
 
 
       </div>
 
-    </div>
-  </div>
+
 </section>
 
 
+
 <script>
-  const search = document.querySelector(".search");
 
-  const ProductName = document.getElementsByClassName("ProductName");
-  search.addEventListener("input", () => {
-    Array.from(ProductName).forEach(product => {
-      // console.log(search.value);
-      if (product.innerText.includes(search.value)) {
-        product.parentElement.parentElement.style.display = "block";
-        console.log(product.parentElement.parentElement.parentElement);
-
-
-      } else {
-        product.parentElement.parentElement.style.display = "none";
-      }
-    });
-  })
 </script>

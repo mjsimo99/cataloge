@@ -119,7 +119,7 @@ body{
 .imgfluid{
     width: 350px;
     height: 340px;
-    padding-right: 10%;
+    padding-right: 40px;
 }
 .imgdash{
     width: 50px;
@@ -128,3 +128,31 @@ body{
 .lead2{
     height: 140px;
 }
+/* .card-header{
+} */
+.margright{
+    margin-right: 2%;
+}
+.statistic{
+    width: 300px;
+}
+.remove-fieldset{
+    margin: 5px 45%;
+}
+.wiheight{
+    width: 319px;
+    height: 337px;
+}
+@media only screen and (max-width: 600px) {
+
+ 
+    .about-text{
+        text-align: center;
+        margin-top: 3%;
+    }
+    .remove-fieldset{
+        margin: 5px 40%;
+    }
+
+  }
+

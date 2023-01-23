@@ -41,8 +41,7 @@ class glow{
 
     }
     static public function calcul(){
-        $stmt = DB::connect()->prepare("SELECT SUM(prix) FROM product
-        ");
+        $stmt = DB::connect()->prepare("SELECT SUM(prix) FROM product");
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->close();
